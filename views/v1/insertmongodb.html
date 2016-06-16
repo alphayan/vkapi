@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v1生成可用二维码等操作</title>
+    <script type="text/javascript" src="/static/js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.datetimepicker.full.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.datetimepicker.css" />
+    <script type="text/javascript" src="/static/js/qrcode.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.qrcode.js"></script>
+    <style type="text/css">
+        .demo1{
+            height:300px;
+        }
+    </style>
+</head>
+
+<body>
+<table>
+    <tr>
+        <th>商户号</th>
+        <th>设备号</th>
+        <th>密码</th>
+        <th>地址</th>
+        <th>负责人</th>
+        <th>tips</th>
+        <th>body</th>
+    </tr>
+    <tr id="pvalue">
+        <td><input type="text" id="mch_id"></td>
+        <td><input type="text" id="device_info"></td>
+        <td><input type="text" id="password"></td>
+        <td><input type="text" id="address"></td>
+        <td><input type="text" id="prin"></td>
+        <td><input type="text" id="tips"></td>
+        <td><input type="text" id="body"></td>
+
+
+    </tr>
+</table>
+
+<input id="sub" type="submit" value="一键生成二维码" />
+<div id="code"></div>
+<div id="urltext"></div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#sub").click(function(){
+            mch_id=$("#mch_id").val();
+            device_info=$("#device_info").val();
+            password=$("#password").val();
+            address=$("#address").val();
+            prin=$("#prin").val();
+            tips=$("#tips").val();
+            body=$("#body").val();
+            $.post(
+                    "/vone/api",
+                    {
+                        service:"vone.insertmongodb",
+                        mch_id:mch_id,
+                    },
+                    function (data,staus) {
+                        var obj = eval(data);
+                        if  (obj.result_code=="SUCCESS"){
+
+                            $.post(
+                                    "/vone/api",
+                                    {
+                                        service:"vone.insertpassword",
+                                        name:body,
+                                        device_info:device_info,
+                                        password:password,
+                                        address:address,
+                                        prin:prin,
+                                        mch_id:mch_id,
+                                    },
+                                    function (data,staus) {
+                                        var obj = eval(data);
+                                        if  (obj.result_code=="SUCCESS"){
+                                            $.post(
+                                                    "/vone/api",
+                                                    {
+                                                        service:"vone.tinyurl",
+                                                        mch_id:mch_id,
+                                                        device_info:device_info,
+                                                        tips:tips,
+                                                        body:body,
+                                                    },
+                                                    function (data,staus) {
+                                                        var obj = eval(data);
+                                                        if  (obj.result_code=="SUCCESS"){
+                                                            $("#code").qrcode({
+                                                                text     : obj.data,
+                                                                render   : "canvas",//设置渲染方式
+                                                                width       : 300,     //设置宽度
+                                                                height      : 300,     //设置高度
+                                                                typeNumber  : -1,      //计算模式
+                                                                correctLevel    : QRErrorCorrectLevel.H,//纠错等级
+                                                                background      : "#ffffff",//背景颜色
+                                                                foreground      : "#000000" //前景颜色
+                                                            });
+                                                            $("#urltext").html("请将下面的url地址添加到商户号后台公众号支付授权地址里面");
+                                                            $("#urltext").after("<p>www.vkaifu.com/vkpay/</p>");
+                                                        }
+                                                    }
+                                            )
+                                        }
+                                    }
+                            )
+                        }
+                    }
+            )
+
+
+
+        });
+    });
+</script>
+
+</body>
+
+</html>
