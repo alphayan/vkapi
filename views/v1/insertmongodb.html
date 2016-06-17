@@ -60,8 +60,7 @@
                     },
                     function (data,staus) {
                         var obj = eval(data);
-                        if  (obj.result_code=="SUCCESS"){
-
+                        if  (obj.result_code=="SUCCESS"||obj.result_des=="商户信息已经存在"){
                             $.post(
                                     "/vone/api",
                                     {
