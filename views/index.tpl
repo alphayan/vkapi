@@ -84,6 +84,11 @@
      <div class="description">
           <a href="/vone/api/insertmongodb">→→点击到达生成二维码页面</a>
         </div>
+          <br/>
+            <br/>
+             <div class="description">
+                  <a href="/vtwo/api/setonsale">→→点击到达设置v2优惠信息页面</a>
+                </div>
   </header>
   <footer>
     <div class="author">

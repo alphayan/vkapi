@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v2设置随机立减</title>
+    <script type="text/javascript" src="/static/js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.datetimepicker.full.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.datetimepicker.css" />
+    <style type="text/css">
+        .demo1{
+            height:300px;
+        }
+    </style>
+</head>
+
+<body>
+<table>
+    <tr>
+        <th>商户号</th>
+        <th>设备号</th>
+        <th>优惠笔数</th>
+        <th>优惠最大值</th>
+        <th>优惠最小值</th>
+        <th>优惠总金额</th>
+        <th>起始日期</th>
+        <th>截止日期</th>
+    </tr>
+    <tr id="pvalue">
+        <td><input type="text" id="mch_id"></td>
+        <td><input type="text" id="device_info"></td>
+        <td><input type="text" id="number"></td>
+        <td><input type="text" id="max"></td>
+        <td><input type="text" id="min"></td>
+        <td><input type="text" id="money"></td>
+        <td><input type="text" id="timestart"></td>
+        <td><input type="text" id="timeend"></td>
+
+    </tr>
+</table>
+
+            <input id="sub" type="submit" value="确认提交" />
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#timestart").datetimepicker({timepicker:false,format:"Y-m-d"});
+
+        $("#timeend").datetimepicker({timepicker:false,format:"Y-m-d"});
+        $("#sub").click(function(){
+            pmch_id=$("#mch_id").val();
+            ptimestart=$("#timestart").datetimepicker({timepicker:false,format:"Y-m-d"}).val();
+            ptimeend=$("#timeend").datetimepicker({timepicker:false,format:"Y-m-d"}).val();
+            pnumber=$("#number").val();
+            pmax=$("#max").val();
+            pmin=$("#min").val();
+            pmoney=$("#money").val();
+            pdevice_info=$("#device_info").val();
+
+            $.post(
+                    "/two/api",
+                    {
+                        service:"vtwo.setonsale",
+                        mch_id:pmch_id,
+                        timestart:ptimestart,
+                        device_info:pdevice_info,
+                        max:pmax,
+                        min:pmin,
+                        money:pmoney,
+                        number:pnumber,
+                        timeend:ptimeend,
+                    },
+                    function (data,staus) {
+                        var obj = eval(data);
+                        if (obj[0].result_code=="SUCCESS"){
+                            alert("恭喜，插入随机立减优惠信息成功");
+                        }
+                    }
+            )
+
+
+
+        });
+    });
+</script>
+
+</body>
+
+</html>
