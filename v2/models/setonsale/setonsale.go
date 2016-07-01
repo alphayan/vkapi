@@ -27,8 +27,9 @@ func Setonsale(o Onsaledata)[]result.Result  {
 	if o.Timestart==o.Timeend{
 		o.Time=o.Timestart
 		str:=tools.ToKeyValueStr(o)
+
+		str="http://localhost:8200/onsale/setgoodstag?pwd=911202&"+str
 		fmt.Println(str)
-		str="http://localhost:8200/setgoodstag?pwd=911202&"+str
 		re:=tools.Get(str)
 		fmt.Println(string(re))
 		tools.JsonDecodebytes(re,&resultb)
@@ -52,7 +53,7 @@ func Setonsale(o Onsaledata)[]result.Result  {
 			o.Timestart = temp.Format("20060102")
 
 			str:=tools.ToKeyValueStr(o)
-			str="http://localhost:8200/setgoodstag?pwd=911202&"+str
+			str="http://localhost:8200/onsale/setgoodstag?pwd=911202&"+str
 			fmt.Println(str)
 			re:=tools.Get(str)
 			//fmt.Println(string(re))
