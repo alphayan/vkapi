@@ -99,12 +99,18 @@
                                                             });
                                                             $("#urltext").html("请将下面的url地址添加到商户号后台公众号支付授权地址里面");
                                                             $("#urltext").after("<p>www.vkaifu.com/vkpay/</p>");
+                                                        }else{
+                                                            alert("生成失败~！");
                                                         }
                                                     }
                                             )
+                                        }else{
+                                            alert("生成失败~！，请检查参数中是否含有空格~！");
                                         }
                                     }
                             )
+                        }else{
+                            alert("生成失败~！，请检查参数中是否含有空格~！");
                         }
                     }
             )

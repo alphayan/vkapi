@@ -3,7 +3,6 @@ package v1
 import (
 	"github.com/astaxie/beego"
 	"vkapi/v1/controllers/setonsale"
-
 	"fmt"
 	"vkapi/models/result"
 	"vkapi/v1/controllers/insertmongodb"
@@ -31,7 +30,6 @@ func (c *VoneController)VoneApi(){
 	fmt.Println("收到请求:"+c.Ctx.Request.RequestURI)
 	c.Ctx.ResponseWriter.Header().Set("Access-Control-Allow-Origin","*")
 	service:=c.GetString("service")
-
 	if service=="vone.setonsale"{
 		result:=setonsale.Setonsale(c.GetString("device_info"),c.GetString("max"),c.GetString("mch_id"),c.GetString("min"),c.GetString("money"),c.GetString("number"),c.GetString("timestart"),c.GetString("timeend"))
 		c.Data["json"]=&result
