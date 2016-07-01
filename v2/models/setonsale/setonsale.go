@@ -16,7 +16,7 @@ type  Onsaledata struct {
 	Min       	string            `json:"min"`
 	Mch_id    	string     	  `json:"mch_id"`
 	Money     	string   	  `json:"money"`
-	Device_info     string            `json:"device_info"`
+	Cashiername     string            `json:"cashiername"`
 	Timestart       string
 	Timeend         string
 }
@@ -28,7 +28,7 @@ func Setonsale(o Onsaledata)[]result.Result  {
 		o.Time=o.Timestart
 		str:=tools.ToKeyValueStr(o)
 		fmt.Println(str)
-		str="http://localhost:8000/setgoodstag?pwd=911202&"+str
+		str="http://localhost:8200/setgoodstag?pwd=911202&"+str
 		re:=tools.Get(str)
 		fmt.Println(string(re))
 		tools.JsonDecodebytes(re,&resultb)
@@ -52,7 +52,7 @@ func Setonsale(o Onsaledata)[]result.Result  {
 			o.Timestart = temp.Format("20060102")
 
 			str:=tools.ToKeyValueStr(o)
-			str="http://localhost:8000/setgoodstag?pwd=911202&"+str
+			str="http://localhost:8200/setgoodstag?pwd=911202&"+str
 			fmt.Println(str)
 			re:=tools.Get(str)
 			//fmt.Println(string(re))

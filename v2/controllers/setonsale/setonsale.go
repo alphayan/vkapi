@@ -23,7 +23,7 @@ func Setonsale(args ...string)[]result.Result{
 			return resulta
 		}
 	}
-	onsale.Device_info=args[0]
+	onsale.Cashiername=args[0]
 	onsale.Max=args[1]
 	onsale.Mch_id=args[2]
 	onsale.Min=args[3]
