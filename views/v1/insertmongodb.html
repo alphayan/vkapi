@@ -74,7 +74,7 @@
                                     },
                                     function (data,staus) {
                                         var obj = eval(data);
-                                        if  (obj.result_code=="SUCCESS"){
+                                        if  (obj.result_code=="SUCCESS"||obj.result_des=="修改失败，账号或者密码不正确，或者已存在"){
                                             $.post(
                                                     "/vone/api",
                                                     {
@@ -114,9 +114,6 @@
                         }
                     }
             )
-
-
-
         });
     });
 </script>
