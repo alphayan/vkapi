@@ -3,7 +3,6 @@ package tinyurl
 import (
 	"vkapi/models/result"
 	"vkapi/models/tools"
-	"fmt"
 	"strings"
 )
 
@@ -27,16 +26,9 @@ func UrlEncode(url string) string {
 func TinyUrl(ui UrlInfo)result.Result{
 	result:=result.Result{}
 	str:=tools.ToKeyValueStr(ui)
-	str="url=http://www.vkaifu.com/vkpay/pay?"+str
-	alongurl := UrlEncode(str)
-	ri:=ResponeInfo{}
-	re:=tools.Post("http://dwz.cn/create.php",alongurl)
-	tools.JsonDecodebytes(re,&ri)
-	fmt.Println(string(re))
-	fmt.Println(ri)
+	str="http://www.vkaifu.com/vkpay/pay?"+str
 	result.Result_code="SUCCESS"
 	result.Result_des="获取短链接成功"
-	result.Data=ri.Tinyurl
-	fmt.Println(result.Data)
+	result.Data=str
 	return result
 }
