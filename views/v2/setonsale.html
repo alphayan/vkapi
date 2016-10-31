@@ -54,7 +54,7 @@
             pmax=$("#max").val();
             pmin=$("#min").val();
             pmoney=$("#money").val();
-            plimamount=$("limamount").val();
+            plimamount=$("#limamount").val();
             pdevice_info=$("#device_info").val();
 
             $.post(
@@ -68,8 +68,8 @@
                         min:pmin,
                         money:pmoney,
                         number:pnumber,
-                        limamount:plimamount,
                         timeend:ptimeend,
+                        limamount:plimamount,
                     },
                     function (data,staus) {
                         var obj = eval(data);

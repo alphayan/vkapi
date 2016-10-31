@@ -33,8 +33,11 @@ func Setonsale(args ...string)[]result.Result{
 	onsale.Timestart=tools.FormatTime(args[6])
 
 	onsale.Timeend=tools.FormatTime(args[7])
+	fmt.Println(args[8])
+	onsale.Limamount=args[8]
 	onsale.From="weikai"
 	onsale.Goods_tag="xian"
 	result:=setonsale.Setonsale(onsale)
+	fmt.Println(result)
   	return  result
 }

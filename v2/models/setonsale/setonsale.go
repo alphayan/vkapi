@@ -28,7 +28,6 @@ func Setonsale(o Onsaledata)[]result.Result  {
 	if o.Timestart==o.Timeend{
 		o.Time=o.Timestart
 		str:=tools.ToKeyValueStr(o)
-
 		str="http://localhost:8200/onsale/setgoodstag?pwd=911202&"+str
 		fmt.Println(str)
 		re:=tools.Get(str)
