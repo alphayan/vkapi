@@ -25,7 +25,7 @@ func (c *VtwoController)VtwoApi(){
 	c.Ctx.ResponseWriter.Header().Set("Access-Control-Allow-Origin","*")
 	service:=c.GetString("service")
 	if service=="vtwo.setonsale"{
-		result:=setonsale.Setonsale(c.GetString("cashiername"),c.GetString("max"),c.GetString("mch_id"),c.GetString("min"),c.GetString("money"),c.GetString("number"),c.GetString("timestart"),c.GetString("timeend"))
+		result:=setonsale.Setonsale(c.GetString("cashiername"),c.GetString("max"),c.GetString("mch_id"),c.GetString("min"),c.GetString("money"),c.GetString("number"),c.GetString("timestart"),c.GetString("limamount"),c.GetString("timeend"))
 		c.Data["json"]=&result
 		c.ServeJSON()
 	}else{

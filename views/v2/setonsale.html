@@ -31,6 +31,7 @@
         <td><input type="text" id="number"></td>
         <td><input type="text" id="max"></td>
         <td><input type="text" id="min"></td>
+        <td><input type="text" id="limamount"></td>
         <td><input type="text" id="money"></td>
         <td><input type="text" id="timestart"></td>
         <td><input type="text" id="timeend"></td>
@@ -52,6 +53,7 @@
             pmax=$("#max").val();
             pmin=$("#min").val();
             pmoney=$("#money").val();
+            plimamount=$("limamount").val();
             pdevice_info=$("#device_info").val();
 
             $.post(
@@ -65,6 +67,7 @@
                         min:pmin,
                         money:pmoney,
                         number:pnumber,
+                        limamount:plimamount,
                         timeend:ptimeend,
                     },
                     function (data,staus) {

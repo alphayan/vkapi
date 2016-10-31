@@ -16,6 +16,7 @@ type  Onsaledata struct {
 	Min       	string            `json:"min"`
 	Mch_id    	string     	  `json:"mch_id"`
 	Money     	string   	  `json:"money"`
+	Limamount 	string  	  `json:"limamount"`
 	Cashiername     string            `json:"cashiername"`
 	Timestart       string
 	Timeend         string
