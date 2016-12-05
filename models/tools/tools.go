@@ -15,7 +15,7 @@ func ToKeyValueStr(v interface{}) string {
 		field := vt.Field(i)
 		name := field.Name
 		keytemp := field.Tag.Get("json")
-		if keytemp==""{
+		if keytemp == "" {
 			break
 		}
 		keymap := strings.Split(keytemp, ",")
@@ -25,10 +25,10 @@ func ToKeyValueStr(v interface{}) string {
 			signstr.WriteString(key + "=" + value + "&")
 		}
 	}
-	stra:=strings.Split(signstr.String(),"&")//去掉最后一个&符，强迫症
+	stra := strings.Split(signstr.String(), "&")//去掉最后一个&符，强迫症
 	fmt.Println(stra)
 
-	strb:=strings.Join(stra[:len(stra)-1],"&")
+	strb := strings.Join(stra[:len(stra) - 1], "&")
 	fmt.Println(strb)
 
 	return strb

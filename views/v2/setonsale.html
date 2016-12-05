@@ -5,10 +5,10 @@
     <title>v2设置随机立减</title>
     <script type="text/javascript" src="/static/js/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.datetimepicker.full.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/css/jquery.datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.datetimepicker.css"/>
     <style type="text/css">
-        .demo1{
-            height:300px;
+        .demo1 {
+            height: 300px;
         }
     </style>
 </head>
@@ -40,45 +40,44 @@
     </tr>
 </table>
 
-            <input id="sub" type="submit" value="确认提交" />
+<input id="sub" type="submit" value="确认提交"/>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#timestart").datetimepicker({timepicker:false,format:"Y-m-d"});
+    $(document).ready(function () {
+        $("#timestart").datetimepicker({timepicker: false, format: "Y-m-d"});
 
-        $("#timeend").datetimepicker({timepicker:false,format:"Y-m-d"});
-        $("#sub").click(function(){
-            pmch_id=$("#mch_id").val();
-            ptimestart=$("#timestart").datetimepicker({timepicker:false,format:"Y-m-d"}).val();
-            ptimeend=$("#timeend").datetimepicker({timepicker:false,format:"Y-m-d"}).val();
-            pnumber=$("#number").val();
-            pmax=$("#max").val();
-            pmin=$("#min").val();
-            pmoney=$("#money").val();
-            plimamount=$("#limamount").val();
-            pdevice_info=$("#device_info").val();
+        $("#timeend").datetimepicker({timepicker: false, format: "Y-m-d"});
+        $("#sub").click(function () {
+            pmch_id = $("#mch_id").val();
+            ptimestart = $("#timestart").datetimepicker({timepicker: false, format: "Y-m-d"}).val();
+            ptimeend = $("#timeend").datetimepicker({timepicker: false, format: "Y-m-d"}).val();
+            pnumber = $("#number").val();
+            pmax = $("#max").val();
+            pmin = $("#min").val();
+            pmoney = $("#money").val();
+            plimamount = $("#limamount").val();
+            pdevice_info = $("#device_info").val();
 
             $.post(
-                    "/vtwo/api",
-                    {
-                        service:"vtwo.setonsale",
-                        mch_id:pmch_id,
-                        timestart:ptimestart,
-                        cashiername:pdevice_info,
-                        max:pmax,
-                        min:pmin,
-                        money:pmoney,
-                        number:pnumber,
-                        timeend:ptimeend,
-                        limamount:plimamount,
-                    },
-                    function (data,staus) {
-                        var obj = eval(data);
-                        if (obj[0].result_code=="SUCCESS"){
-                            alert("恭喜，插入随机立减优惠信息成功");
-                        }
+                "/vtwo/api",
+                {
+                    service: "vtwo.setonsale",
+                    mch_id: pmch_id,
+                    timestart: ptimestart,
+                    cashiername: pdevice_info,
+                    max: pmax,
+                    min: pmin,
+                    money: pmoney,
+                    number: pnumber,
+                    timeend: ptimeend,
+                    limamount: plimamount,
+                },
+                function (data, staus) {
+                    var obj = eval(data);
+                    if (obj[0].result_code == "SUCCESS") {
+                        alert("恭喜，插入随机立减优惠信息成功");
                     }
+                }
             )
-
 
 
         });

@@ -20,7 +20,7 @@ func Get(geturl string) []byte {
 	}
 	return robots
 }
-func Post(posturl,data string)[]byte{
+func Post(posturl, data string) []byte {
 	res, err := http.Post(posturl, "application/x-www-form-urlencoded", strings.NewReader(data))
 	if err != nil {
 		fmt.Println(err)

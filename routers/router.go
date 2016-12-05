@@ -1,7 +1,6 @@
 package routers
 
 import (
-
 	"github.com/astaxie/beego"
 	"vkapi/controllers"
 	"vkapi/v1/controllers"
@@ -9,7 +8,7 @@ import (
 )
 
 func init() {
-    beego.Router("/", &controllers.MainController{})
+	beego.Router("/", &controllers.MainController{})
 	beego.Include(&v1.VoneController{})
 	beego.Include(&v2.VtwoController{})
 }
